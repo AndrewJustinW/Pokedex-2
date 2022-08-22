@@ -1,0 +1,9 @@
+.nav-link{
+    font-weight: bold;
+
+    &:hover{
+        color: red;
+        text-decoration: none;
+
+    }
+}
