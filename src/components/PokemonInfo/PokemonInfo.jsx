@@ -164,14 +164,16 @@ const PokemonInfo = () => {
   return (
     <Stack
       fontWeight="bold"
-      position={scrolled ? "sticky" : ""}
-      top={scrolled ? "50px" : ""}
+      position={{ sm: "absolute", md: scrolled ? "sticky" : "unset" }}
+      top={{ sm: "0", md: scrolled ? "50px" : "" }}
       bg="white"
       borderRadius="20px"
-      height="75vh"
-      width="450px"
+      width={{ sm: "100vw", md: "350px" }}
+      height={{ sm: "100%", md: "" }}
       boxShadow="rgba(0, 0, 0, 0.1) 0px 4px 12px"
       p="20px 30px"
+      marginLeft="15px"
+      zIndex={{ base: "10", md: 0 }}
     >
       <Flex justify="flex-end">
         <AiOutlineCloseCircle

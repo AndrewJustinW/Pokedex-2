@@ -14,7 +14,12 @@ const PageBar = ({ page, setPage }) => {
   return (
     <HStack
       className="pages-container"
-      w={selectedPokemon ? "850px" : "1164px"}
+      w={{
+        sm: selectedPokemon ? "300px" : "400px",
+        md: selectedPokemon ? "400px" : "730px",
+        lg: selectedPokemon ? "565px" : "1000px",
+        xl: selectedPokemon ? "790px" : "1200px",
+      }}
       overflowX="scroll"
       alignSelf="flex-start"
       pb="20px"

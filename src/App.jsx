@@ -1,4 +1,4 @@
-import { Stack, Flex, VStack } from "@chakra-ui/react";
+import { Stack, Flex, VStack, HStack } from "@chakra-ui/react";
 import "./App.scss";
 import Nav from "./components/Nav/Nav";
 import PokemonGroup from "./components/PokemonGroup/PokemonGroup";
@@ -8,6 +8,7 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import PageBar from "./components/Pagebar/Pagebar";
 import { PokemonContext } from "./context/PokemonContext";
+import { useMediaQuery } from "@chakra-ui/react";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -34,7 +35,13 @@ function App() {
 
   return (
     <div className="App">
-      <Stack direction="column" w="100%" spacing="30px">
+      <Stack
+        direction="column"
+        spacing="30px"
+        as="main"
+        align="center"
+        overflow={{ sm: "hidden", md: "unset" }}
+      >
         <Nav />
         <SearchBar
           originalList={originalList}
@@ -43,11 +50,17 @@ function App() {
           setPage={setPage}
           offset={offset}
         />
-        <Flex as="main" width="full" justify="center">
-          <VStack>
+        <Flex
+          as="main"
+          justify="center"
+          align="flex-start"
+          spacing="20px"
+          width="400px"
+        >
+          <Stack align="center">
             <PokemonGroup pokemonList={pokemonList} />
             <PageBar page={page} setPage={setPage} />
-          </VStack>
+          </Stack>
           {selectedPokemon && <PokemonInfo />}
         </Flex>
       </Stack>

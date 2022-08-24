@@ -7,7 +7,7 @@ const Nav = () => {
     <Box
       p="30px 30px"
       as="nav"
-      w="600px"
+      w={{ sm: "400px", md: "600px" }}
       background="white"
       borderRadius="10px"
       alignSelf="center"
