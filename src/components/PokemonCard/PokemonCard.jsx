@@ -1,4 +1,3 @@
-import React from "react";
 import {
   GridItem,
   VStack,
@@ -8,13 +7,18 @@ import {
   ListItem,
   Flex,
   HStack,
+  Box,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { PokemonContext } from "../../context/PokemonContext";
+import { MdOutlineCatchingPokemon } from "react-icons/md";
 
 const PokemonCard = ({ pokemon }) => {
   const [pokemonInfo, setPokemonInfo] = useState({});
   const [types, setTypes] = useState([]);
+  const [hovered, setHovered] = useState(false);
+  const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext);
 
   let idNumber = ("0000" + pokemonInfo.id).slice(-3);
 
@@ -65,7 +69,7 @@ const PokemonCard = ({ pokemon }) => {
         color = "#adab8d";
         break;
       case "psychic":
-        color = "darkpurple";
+        color = "#fe509b";
         break;
       case "fairy":
         color = "hotpink";
@@ -87,6 +91,12 @@ const PokemonCard = ({ pokemon }) => {
         break;
       case "ice":
         color = "#88dbec";
+        break;
+      case "steel":
+        color = "#a6a8c6";
+        break;
+      case "dark":
+        color = "#494949";
         break;
 
       default:
@@ -110,10 +120,19 @@ const PokemonCard = ({ pokemon }) => {
       height="230px"
       fontWeight="bold"
       cursor="pointer"
+      onClick={() => {
+        setSelectedPokemon(pokemonInfo);
+      }}
+      onMouseEnter={() => {
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+      }}
     >
       <Text
         fontSize="sm"
-        background="grey"
+        background={selectedPokemon === pokemonInfo ? "red" : "grey "}
         borderRadius="10px"
         p="0 5px"
         color="white"
@@ -121,34 +140,56 @@ const PokemonCard = ({ pokemon }) => {
       >
         # {idNumber}
       </Text>
-      <VStack spacing="10px">
+
+      <VStack spacing="15px">
         <Flex direction="column" justify="flex-end" h="80px">
           <Image
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemonInfo.id}.gif`}
             alt="Pokemon Pic"
             objectFit="cover"
+            // If a gif doesn't exist for the pokemon just use the static image.
+            onError={(event) => {
+              event.target.src = `${pokemonInfo.sprites.front_default}`;
+              event.onerror = null;
+            }}
           />
         </Flex>
+        <VStack spacing="10px">
+          <Flex align="center">
+            <Text
+              fontSize="lg"
+              marginRight="5px"
+              color={selectedPokemon === pokemonInfo ? "red" : "black"}
+              fontWeight="extrabold"
+              borderBottom={
+                hovered && pokemonInfo !== selectedPokemon && "solid 4px red"
+              }
+            >
+              {pokemonInfo.name[0].toUpperCase() + pokemonInfo.name.slice(1)}
+            </Text>
+            <MdOutlineCatchingPokemon
+              fontSize="20px"
+              color={selectedPokemon === pokemonInfo ? "red" : "black "}
+              borderRadius="10px"
+            />
+          </Flex>
 
-        <Text fontSize="lg" color="black" fontWeight="extrabold">
-          {pokemonInfo.name[0].toUpperCase() + pokemonInfo.name.slice(1)}
-        </Text>
-
-        <UnorderedList listStyleType="none">
-          <HStack spacing="10px">
-            {types.map((type) => (
-              <ListItem
-                color="white"
-                p="0 10px"
-                className="pokemon-type"
-                style={{ backgroundColor: typeColor(type) }}
-                borderRadius="5px"
-              >
-                {type[0].toUpperCase() + type.slice(1)}
-              </ListItem>
-            ))}
-          </HStack>
-        </UnorderedList>
+          <UnorderedList listStyleType="none">
+            <HStack spacing="10px">
+              {types.map((type) => (
+                <ListItem
+                  color="white"
+                  p="0 10px"
+                  className="pokemon-type"
+                  style={{ backgroundColor: typeColor(type) }}
+                  borderRadius="5px"
+                >
+                  {type[0].toUpperCase() + type.slice(1)}
+                </ListItem>
+              ))}
+            </HStack>
+          </UnorderedList>
+        </VStack>
       </VStack>
     </GridItem>
   );
