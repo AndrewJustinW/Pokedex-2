@@ -32,30 +32,6 @@ function App() {
     fetchPokemon();
   }, [offset, page]);
 
-  useEffect(() => {
-    if (!selectedPokemon) {
-      document.body.style.overflow = "auto";
-    } else if (selectedPokemon && window.innerWidth < 767) {
-      document.body.style.overflow = "hidden";
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, [selectedPokemon]);
-
-  window.addEventListener("resize", () => {
-    if (selectedPokemon && window.innerWidth < 767) {
-      document.body.style.overflow = "hidden";
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  });
-
   return (
     <div className="App">
       {/* <Image

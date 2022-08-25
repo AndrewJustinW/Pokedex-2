@@ -15,7 +15,7 @@ const PageBar = ({ page, setPage }) => {
     <HStack
       className="pages-container"
       w={{
-        sm: selectedPokemon ? "300px" : "400px",
+        base: selectedPokemon ? "300px" : "400px",
         md: selectedPokemon ? "400px" : "730px",
         lg: selectedPokemon ? "565px" : "1000px",
         xl: selectedPokemon ? "790px" : "1200px",

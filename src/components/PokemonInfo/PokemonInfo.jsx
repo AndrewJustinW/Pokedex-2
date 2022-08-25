@@ -130,15 +130,15 @@ const PokemonInfo = () => {
   return (
     <Stack
       fontWeight="bold"
-      position={{ sm: "absolute", md: scrolled ? "sticky" : "unset" }}
-      top={{ sm: "0", md: scrolled ? "50px" : "" }}
+      position={{ base: "fixed", md: scrolled ? "sticky" : "unset" }}
+      top={{ base: "0", md: scrolled ? "50px" : "" }}
       bg="white"
       borderRadius="20px"
-      width={{ sm: "100%", md: "350px" }}
-      height={{ sm: "100vh", md: "unset" }}
+      width={{ base: "100%", md: "350px" }}
+      height={{ base: "100vh", md: "unset" }}
       boxShadow="rgba(0, 0, 0, 0.1) 0px 4px 12px"
       p="20px 30px"
-      marginLeft={{ sm: 0, md: "15px" }}
+      marginLeft={{ base: 0, md: "15px" }}
       zIndex={{ base: "10", md: 0 }}
     >
       {/* Close Icon */}

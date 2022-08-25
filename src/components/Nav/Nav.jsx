@@ -5,9 +5,9 @@ import "./nav.scss";
 const Nav = () => {
   return (
     <Box
-      p="30px 30px"
+      p={{ base: "30px 10px", md: "30px" }}
       as="nav"
-      w={{ sm: "400px", md: "600px" }}
+      w={{ base: "400px", md: "600px" }}
       background="white"
       borderRadius="10px"
       alignSelf="center"
