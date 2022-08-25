@@ -1,5 +1,5 @@
 import { HStack, Button } from "@chakra-ui/react";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { PokemonContext } from "../../context/PokemonContext";
 import "./pagebar.scss";
 

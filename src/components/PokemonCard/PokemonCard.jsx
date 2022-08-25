@@ -7,7 +7,6 @@ import {
   ListItem,
   Flex,
   HStack,
-  Box,
 } from "@chakra-ui/react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";

@@ -1,4 +1,4 @@
-import { Stack, Flex, Image } from "@chakra-ui/react";
+import { Stack, Flex } from "@chakra-ui/react";
 import "./App.scss";
 import Nav from "./components/Nav/Nav";
 import PokemonGroup from "./components/PokemonGroup/PokemonGroup";
@@ -8,8 +8,6 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import PageBar from "./components/Pagebar/Pagebar";
 import { PokemonContext } from "./context/PokemonContext";
-import { useMediaQuery } from "@chakra-ui/react";
-import logo from "./assets/pokemonIcon.svg";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -35,7 +33,7 @@ function App() {
   }, [offset, page]);
 
   return (
-    <div className="App" zIndex="5">
+    <div className="App">
       {/* <Image
         width="500px"
         position="absolute"
@@ -50,7 +48,6 @@ function App() {
         as="main"
         align="center"
         overflow={{ sm: "hidden", md: "unset" }}
-        zIndex="5"
       >
         <Nav />
         <SearchBar

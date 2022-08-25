@@ -9,10 +9,6 @@ const SearchBar = ({ setPokemonList, setPage, page, offset }) => {
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {
-    // if (input === "" || input === "null" || input === "undefined") {
-    //   return;
-    // }
-
     if (input.length > 0) {
       let filteredPokemon = allPokemon.filter((singlePokemon) => {
         if (singlePokemon.name.toLowerCase().startsWith(input.toLowerCase())) {

@@ -1,5 +1,5 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-import React, { useState, useContext } from "react";
+import { Grid } from "@chakra-ui/react";
+import React, { useContext } from "react";
 import { PokemonContext } from "../../context/PokemonContext";
 import PokemonCard from "../PokemonCard/PokemonCard";
 
