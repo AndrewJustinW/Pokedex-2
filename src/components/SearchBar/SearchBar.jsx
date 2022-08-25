@@ -4,7 +4,7 @@ import { PokemonContext } from "../../context/PokemonContext";
 import axios from "axios";
 
 const SearchBar = ({ setPokemonList, setPage, page, offset }) => {
-  const { allPokemon } = useContext(PokemonContext);
+  const { allPokemon, setSearchActive } = useContext(PokemonContext);
 
   const [input, setInput] = useState("");
 
@@ -25,6 +25,7 @@ const SearchBar = ({ setPokemonList, setPage, page, offset }) => {
       );
 
       setPokemonList(filteredPokemon);
+      setSearchActive(true);
       console.log(input);
     }
   };
@@ -41,6 +42,7 @@ const SearchBar = ({ setPokemonList, setPage, page, offset }) => {
         setPokemonList(res.data.results);
       };
       fetchPokemon();
+      setSearchActive(false);
     }
   }, [input]);
 

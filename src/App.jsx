@@ -18,7 +18,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [offset, setOffset] = useState(12);
 
-  const { selectedPokemon } = useContext(PokemonContext);
+  const { selectedPokemon, searchActive } = useContext(PokemonContext);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -69,7 +69,7 @@ function App() {
         >
           <Stack align="center">
             <PokemonGroup pokemonList={pokemonList} />
-            <PageBar page={page} setPage={setPage} />
+            {!searchActive && <PageBar page={page} setPage={setPage} />}
           </Stack>
           {selectedPokemon && <PokemonInfo />}
         </Flex>

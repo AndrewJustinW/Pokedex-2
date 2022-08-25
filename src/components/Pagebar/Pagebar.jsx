@@ -9,7 +9,7 @@ const PageBar = ({ page, setPage }) => {
   for (let i = 1; i <= totalPokemon / 12; i++) {
     totalPages.push(i);
   }
-  const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext);
+  const { selectedPokemon } = useContext(PokemonContext);
 
   return (
     <HStack

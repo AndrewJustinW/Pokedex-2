@@ -5,6 +5,7 @@ export const PokemonContext = createContext();
 const PokemonContextProvider = (props) => {
   const [selectedPokemon, setSelectedPokemon] = useState();
   const [allPokemon, setAllPokemon] = useState();
+  const [searchActive, setSearchActive] = useState(false);
 
   useEffect(() => {
     const fetchAllPokemon = async () => {
@@ -18,7 +19,14 @@ const PokemonContextProvider = (props) => {
 
   return (
     <PokemonContext.Provider
-      value={{ selectedPokemon, setSelectedPokemon, allPokemon, setAllPokemon }}
+      value={{
+        selectedPokemon,
+        setSelectedPokemon,
+        allPokemon,
+        setAllPokemon,
+        searchActive,
+        setSearchActive,
+      }}
     >
       {props.children}
     </PokemonContext.Provider>
