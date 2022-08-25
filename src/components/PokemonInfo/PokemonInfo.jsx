@@ -13,6 +13,7 @@ import { useContext, useEffect, useState } from "react";
 import { PokemonContext } from "../../context/PokemonContext";
 import axios from "axios";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import PokeStats from "./Stats/PokeStats";
 
 const PokemonInfo = () => {
   const { selectedPokemon, setSelectedPokemon } = useContext(PokemonContext);
@@ -20,7 +21,6 @@ const PokemonInfo = () => {
   const [types, setTypes] = useState([]);
   const [pokeStats, setPokeStats] = useState([]);
   const [pokeInfo, setPokeInfo] = useState();
-  const [evolutions, setEvolutions] = useState();
   const [scrolled, setScrolled] = useState(false);
   let idNumber = ("0000" + selectedPokemon.id).slice(-3);
 
@@ -127,40 +127,6 @@ const PokemonInfo = () => {
     return color;
   };
 
-  const stats = (stat) => {
-    let statOptions = {};
-    switch (stat) {
-      case "hp":
-        statOptions.name = "HP";
-        statOptions.color = "red";
-        break;
-      case "attack":
-        statOptions.name = "ATK";
-        statOptions.color = "Orange";
-        break;
-      case "defense":
-        statOptions.name = "DEF";
-        statOptions.color = "Yellow";
-        break;
-      case "special-attack":
-        statOptions.name = "SPA";
-        statOptions.color = "lightblue";
-        break;
-      case "special-defense":
-        statOptions.name = "SPD";
-        statOptions.color = "lightgreen";
-        break;
-      case "speed":
-        statOptions.name = "SPD";
-        statOptions.color = "purple";
-        break;
-
-      default:
-        break;
-    }
-
-    return statOptions;
-  };
   return (
     <Stack
       fontWeight="bold"
@@ -168,13 +134,14 @@ const PokemonInfo = () => {
       top={{ sm: "0", md: scrolled ? "50px" : "" }}
       bg="white"
       borderRadius="20px"
-      width={{ sm: "100vw", md: "350px" }}
+      width={{ sm: "100%", md: "350px" }}
       height={{ sm: "100vh", md: "unset" }}
       boxShadow="rgba(0, 0, 0, 0.1) 0px 4px 12px"
       p="20px 30px"
-      marginLeft="15px"
+      marginLeft={{ sm: 0, md: "15px" }}
       zIndex={{ base: "10", md: 0 }}
     >
+      {/* Close Icon */}
       <Flex justify="flex-end">
         <AiOutlineCloseCircle
           fontSize="25px"
@@ -185,6 +152,7 @@ const PokemonInfo = () => {
           }}
         />
       </Flex>
+
       <VStack spacing="20px">
         <Image
           objectFit="cover"
@@ -283,30 +251,7 @@ const PokemonInfo = () => {
           </VStack>
         </HStack>
 
-        <VStack>
-          <Text>STATS</Text>
-          <Flex justify="space-around" w="300px">
-            {pokeStats.map((stat) => (
-              <VStack
-                background="#ebf0f8"
-                borderRadius="20px"
-                fontWeight="bold"
-                p="4px"
-              >
-                <Text
-                  borderRadius="50%"
-                  p="7px"
-                  background={stats(stat.statName).color}
-                  fontSize="xs"
-                  color="white"
-                >
-                  {stats(stat.statName).name}
-                </Text>
-                <Text>{stat.statNum}</Text>
-              </VStack>
-            ))}
-          </Flex>
-        </VStack>
+        <PokeStats pokeStats={pokeStats} />
       </VStack>
     </Stack>
   );
