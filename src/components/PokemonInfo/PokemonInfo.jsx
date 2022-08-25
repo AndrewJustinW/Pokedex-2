@@ -169,7 +169,7 @@ const PokemonInfo = () => {
       bg="white"
       borderRadius="20px"
       width={{ sm: "100vw", md: "350px" }}
-      height={{ sm: "100%", md: "" }}
+      height={{ sm: "100vh", md: "unset" }}
       boxShadow="rgba(0, 0, 0, 0.1) 0px 4px 12px"
       p="20px 30px"
       marginLeft="15px"
